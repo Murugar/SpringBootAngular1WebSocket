@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Spring WebSocket Angular</title>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/css/change.css">
+
+<script src="/js/lib/angular.min.js"></script>
+<script src="/js/lib/angular-animate.min.js"></script>
+<script src="/js/lib/angular-aria.min.js"></script>
+<script src="/js/lib/angular-cookies.min.js"></script>
+<script src="/js/lib/angular-loader.min.js"></script>
+<script src="/js/lib/angular-message-format.min.js"></script>
+<script src="/js/lib/angular-messages.min.js"></script>
+<script src="/js/lib/angular-parse-ext.min.js"></script>
+<script src="/js/lib/angular-resource.min.js"></script>
+<script src="/js/lib/angular-route.min.js"></script>
+<script src="/js/lib/angular-sanitize.min.js"></script>
+<script src="/js/lib/angular-touch.min.js"></script>
+
+<script src="/js/lib/sockjs-0.3.4.min.js"></script>
+<script src="/js/lib/stomp.min.js"></script>
+
+<script src="/js/app.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-custom">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Spring Boot WebSocket Angular</a>
+		</div>
+	</nav>
+
+	<div ng-controller="MessageListController as messageList"
+		class="container">
+
+
+		<br /> <br />
+
+		<div class="panel panel-primary">
+
+			<div class="panel-heading">Angular 1.x Spring Boot WebSocket</div>
+
+			<div class="panel-body">
+
+				<h1 class="text-primary">Chat Window</h1>
+				<br />
+
+
+
+
+				<form ng-submit="messageList.login()"
+					ng-show="!messageList.username">
+					<div class="form-group">
+						<input ng-model="messageList.author" placeholder="As User"
+							class="form-control" />
+					</div>
+					<button type="submit" class="btn btn-success">Join</button>
+				</form>
+
+
+				<div class="row">
+
+					<div class="col-md-4">
+
+						<div ng-show="messageList.username">
+							<p class="text-danger">User : {{messageList.username}}</p>
+
+							<form ng-submit="messageList.sendMessage()" class="form-group">
+
+								<div class="form-group">
+									<textarea class="form-control text-warning"
+										ng-model="messageList.text"
+										placeholder="Type Message Here ..." rows="3"
+										my-enter="messageList.sendMessage()"></textarea>
+								</div>
+
+								<button type="submit" class="btn btn-primary">Send</button>
+							</form>
+							<br />
+
+
+						</div>
+
+					</div>
+
+					<div class="col-md-2"></div>
+
+					<div class="col-md-6">
+						<p class="text-warning text-center">Messages</p>
+
+						<table class="table table-bordered">
+								<thead>
+									<tr class="active">
+										<th>Date</th>
+										<th>Author</th>
+										<th>Text</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="success" ng-repeat="message in messageList.messages">
+										<td>{{message.date}}</td>
+										<td>{{message.author}}</td>
+										<td>{{message.text}}</td>
+									</tr>
+								</tbody>
+							</table>
+							
+						
+
+					</div>
+
+				</div>
+
+
+			</div>
+			<div class="panel-footer panel-custom text-center">iQmSoft</div>
+		</div>
+	</div>
+
+</body>
+</html>
